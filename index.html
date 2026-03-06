@@ -1,1 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Smart Attendance System</title>
 
+<style>
+
+body{
+font-family: 'Segoe UI', sans-serif;
+background: linear-gradient(135deg,#6a11cb,#2575fc);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+}
+
+.container{
+background:white;
+padding:30px;
+border-radius:15px;
+width:500px;
+box-shadow:0 15px 35px rgba(0,0,0,0.2);
+text-align:center;
+}
+
+h2{
+margin-bottom:20px;
+}
+
+input{
+width:80%;
+padding:12px;
+margin:8px;
+border-radius:8px;
+border:1px solid #ccc;
+font-size:14px;
+}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:8px;
+background:#2575fc;
+color:white;
+font-size:15px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#1b5fd6;
+}
+
+table{
+width:100%;
+margin-top:20px;
+border-collapse:collapse;
+font-size:14px;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:10px;
+}
+
+th{
+background:#2575fc;
+color:white;
+}
+
+tr:nth-child(even){
+background:#f5f5f5;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Absensi Mahasiswa</h2>
+
+<input type="text" id="npm" placeholder="Masukkan NPM">
+<input type="text" id="nama" placeholder="Masukkan Nama">
+
+<br>
+
+<button onclick="absen()">Absen</button>
+
+<table id="tabel">
+<tr>
+<th>No</th>
+<th>NPM</th>
+<th>Nama</th>
+<th>Tanggal</th>
+<th>Jam</th>
+</tr>
+</table>
+
+</div>
+
+<script>
+
+let nomor = 1;
+
+function absen(){
+
+let npm = document.getElementById("npm").value;
+let nama = document.getElementById("nama").value;
+
+if(npm=="" || nama==""){
+alert("NPM dan Nama harus diisi!");
+return;
+}
+
+let waktu = new Date();
+
+let tanggal = waktu.toLocaleDateString();
+let jam = waktu.toLocaleTimeString();
+
+let tabel = document.getElementById("tabel");
+
+let row = tabel.insertRow();
+
+row.insertCell(0).innerHTML = nomor++;
+row.insertCell(1).innerHTML = npm;
+row.insertCell(2).innerHTML = nama;
+row.insertCell(3).innerHTML = tanggal;
+row.insertCell(4).innerHTML = jam;
+
+document.getElementById("npm").value="";
+document.getElementById("nama").value="";
+
+}
+
+</script>
+
+</body>
+</html>
